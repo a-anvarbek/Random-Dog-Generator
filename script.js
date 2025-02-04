@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dogImage = document.getElementById("dogImage");
     const dogBreed = document.getElementById("dogBreed");
     const getDogButton = document.querySelector(".dogInfo button");
-    const favoriteIcon = document.querySelector(".dogInfo i");
+    const favoriteIcon = document.getElementById("favoriteIcon"); // ID orqali olish
     const favoriteCount = document.getElementById("count");
     
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -25,17 +25,33 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    getDogButton.addEventListener("click", fetchRandomDog);
+    getDogButton.addEventListener("click", () => {
+        favoriteIcon.style.color = "black";
+        fetchRandomDog();
+    });
 
     favoriteIcon.addEventListener("click", () => {
-        if (!favorites.includes(dogImage.src)) {
-            favorites.push(dogImage.src);
+        console.log("Icon clicked"); // Konsolga chiqaryapmiz tekshirish uchun
+        
+        if (favoriteIcon.classList.contains("fa-regular")) {
+            favoriteIcon.classList.remove("fa-regular");
+            favoriteIcon.classList.add("fa-solid");
+            favoriteIcon.style.color = "red";
+            
+            if (!favorites.includes(dogImage.src)) {
+                favorites.push(dogImage.src);
+                localStorage.setItem("favorites", JSON.stringify(favorites));
+                favoriteCount.textContent = favorites.length;
+            }
+        } else {
+            favoriteIcon.classList.remove("fa-solid");
+            favoriteIcon.classList.add("fa-regular");
+            favoriteIcon.style.color = "black";
+            
+            favorites = favorites.filter(src => src !== dogImage.src);
             localStorage.setItem("favorites", JSON.stringify(favorites));
             favoriteCount.textContent = favorites.length;
-            favoriteIcon.classList.add("fa-regular");   
-            favoriteIcon.style.Color = "#f00";
         }
-        favoriteIcon.classList.toggle("fa-solid");
     });
 
     fetchRandomDog();
