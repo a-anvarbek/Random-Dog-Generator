@@ -78,7 +78,7 @@ section{
 
 .container .containerBox{
     width: 450px;
-    height: 500px;
+    height: 450px;
     background-color: #fff;
     display: grid;
     justify-content: center;
@@ -92,12 +92,37 @@ section{
     border-radius: 15px;
 }
 
-.container .containerBox img{
+.container .containerBox .dogImage img{
     width: 400px;
     height: 280px;
     border-radius: 15px;
 }
 
-.container .containerBox h2{
-    
+.container .containerBox .dogInfo h2{
+    font-size: 1em;
+    /* margin-bottom: 30px; */
+}
+
+.container .containerBox .dogInfo button{
+    background-color: #4361ee;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 40px;
+}
+
+.container .containerBox .dogInfo button:hover{
+    background-color: #3849e7;
+}
+
+.container .containerBox .dogInfo i{
+    font-size: 3.5em;
+    font-weight: 200;
+    margin-right: -100px;
+    /* text-align: right; */
+    /* width: 100%;/ */
+    /* margin-right: 10px;
+    margin-left: 100px; */
 }
