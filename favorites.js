@@ -1,7 +1,7 @@
 const favoritesBox = document.getElementById("favoritesBox");
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-// Sevimlilarni sahifaga chiqarish
+
 function renderFavorites() {
     favoritesBox.innerHTML = "";
 
@@ -40,24 +40,20 @@ function renderFavorites() {
     });
 }
 
-// Sevimlidan o‘chirish
 function removeFavorite(index) {
     favorites.splice(index, 1);
     localStorage.setItem("favorites", JSON.stringify(favorites));
     renderFavorites();
 }
 
-// Rasm URL dan it turini chiqarish
 function extractBreedName(url) {
     const parts = url.split("/");
     const breed = parts[parts.length - 2].replace("-", " ");
     return breed.charAt(0).toUpperCase() + breed.slice(1);
 }
 
-// Sahifani yuklaganda sevimlilarni chiqarish
 renderFavorites();
 
-// "Go Back" tugmasi yaratish
 const goBackLink = document.createElement("a");
 goBackLink.textContent = "⬅ Go Back";
 goBackLink.href = "index.html";
